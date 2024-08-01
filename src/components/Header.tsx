@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useForm } from "react-hook-form"
 // para poder resalta el nav debemos usar el NavLink en vez del link
 
 export default function Header() {
@@ -8,6 +9,11 @@ export default function Header() {
 
   const isHome = useMemo(() => pathname === "/", [pathname]);
   console.log(isHome);
+
+  //React Hook Form
+  
+
+  const {register, handleSubmit} = useForm();
 
   return (
     <header className={isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
@@ -42,6 +48,7 @@ export default function Header() {
         {isHome && (
           <form
             className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+            onSubmit={handleSubmit(data=>console.log(data))}
           >
             <div className="space-y-4">
               <label
@@ -54,24 +61,24 @@ export default function Header() {
               <input
                 id="ingridient"
                 type="text"
-                name="ingridient"
                 className="p-3 w-full rounded focus-outline-none"
                 placeholder="Nombre o Ingredientes. Ej: Vodka, Tequila, Cafe"
+                {...register("ingredient")}
               />
             </div>
 
             <div className="space-y-4">
               <label
-                htmlFor="ingridient"
+                htmlFor="ingredient"
                 className="block text-white uppercase font-extrabold text-lg"
               >
                 Categoria
               </label>
 
               <select
-                id="ingridient"
-                name="ingridient"
+                id="ingredient"
                 className="p-3 w-full rounded focus-outline-none"
+                {...register("ingredient")}
               >
                 <option>-- Seleccione --</option>
               </select>
