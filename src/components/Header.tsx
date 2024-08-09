@@ -1,15 +1,20 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useAppStore } from "../store/useAppStore";
 // para poder resalta el nav debemos usar el NavLink en vez del link
 
 export default function Header() {
   const { pathname } = useLocation();
-  console.log(pathname);
-
+  // console.log(pathname);
   const isHome = useMemo(() => pathname === "/", [pathname]);
-  console.log(isHome);
+  // console.log(isHome);
 
+  const fecthCategories = useAppStore((state)=> state.fecthCategories)
+
+  useEffect(()=> {
+    fecthCategories(); 
+  },[])
   //React Hook Form
 
   const { register, handleSubmit } = useForm();
