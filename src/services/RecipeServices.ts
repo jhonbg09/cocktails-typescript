@@ -9,8 +9,10 @@ export async function getCategories() {
 
     const {data}  = await axios.get(url)
     console.log(data);
-    // De esta manera vaalida que la data que viene de la api venga con la estructuraa correcta
+    // De esta manera valida que la data que viene de la api venga con la estructuraa correcta y validar la informacion
     const result = CategoriesAPIResponseSechema.safeParse(data);
     console.log(result);
-    
+    if(result.success) {
+        return result.data;
+    }
 }

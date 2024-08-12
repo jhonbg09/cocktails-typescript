@@ -10,7 +10,12 @@ export default function Header() {
   const isHome = useMemo(() => pathname === "/", [pathname]);
   // console.log(isHome);
 
+  // Obtiene la función 'fetchCategories' del estado global de la aplicación
   const fecthCategories = useAppStore((state)=> state.fecthCategories)
+
+  // Obtiene la lista actual de 'categories' del estado global de la aplicación
+  const categories = useAppStore((state)=> state.categories)
+  console.log(categories)
 
   useEffect(()=> {
     fecthCategories(); 
@@ -87,6 +92,18 @@ export default function Header() {
                 {...register("ingredient")}
               >
                 <option>-- Seleccione --</option>
+                {categories.drinks.map( category => (
+                  <option value="">
+                    {category.strCategory}
+                  </option>
+                ))}
+                {/* {categories.drinks.map(category =>(
+                  <option 
+                    value={category.strCategory}
+                    key={category.strCategory}>
+                    {category.strCategory}
+                  </option>
+                ) */}
               </select>
 
               <input
