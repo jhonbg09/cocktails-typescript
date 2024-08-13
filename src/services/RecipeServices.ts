@@ -8,7 +8,7 @@ export async function getCategories() {
     // const url = 'www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
 
     const {data}  = await axios.get(url)
-    console.log(data);
+    // console.log(data);
     // De esta manera valida que la data que viene de la api venga con la estructuraa correcta y validar la informacion
     const result = CategoriesAPIResponseSechema.safeParse(data);
     console.log(result);
