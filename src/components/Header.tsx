@@ -21,7 +21,7 @@ export default function Header() {
   // Obtiene la lista actual de 'categories' del estado global de la aplicación
   const categories = useAppStore((state) => state.categories);
 
-  const searchRecipes = useAppStore((state) => state.SearchRecipes);
+  const searchRecipes = useAppStore((state) => state.searchRecipes);
 
   useEffect(() => {
     fecthCategories();

@@ -1,5 +1,6 @@
 import axios from "axios"
 import {CategoriesAPIResponseSechema} from "../utils/recipes-schema"
+import { SearchFilter } from "../types";
 
 export async function getCategories() {
     //Manera correcta con https
@@ -11,8 +12,12 @@ export async function getCategories() {
     // console.log(data);
     // De esta manera valida que la data que viene de la api venga con la estructuraa correcta y validar la informacion
     const result = CategoriesAPIResponseSechema.safeParse(data);
-    console.log(result);
+    
     if(result.success) {
         return result.data;
     }
+}
+
+export async function getRecipes(filters: SearchFilter) {
+    console.log(filters);
 }
