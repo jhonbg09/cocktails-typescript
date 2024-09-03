@@ -6,7 +6,7 @@ import type { Categories, SearchFilter } from "../types"
 export type RecipesSliceType = {
     categories: Categories
     fecthCategories: () => Promise<void>
-    SearchRecipes: (searchFilter:SearchFilter) => Promise<void>
+    searchRecipes: (searchFilter:SearchFilter) => Promise<void>
     
 }
 export const createRecipesSlice: StateCreator<RecipesSliceType> = (set) => ({
@@ -21,9 +21,10 @@ export const createRecipesSlice: StateCreator<RecipesSliceType> = (set) => ({
         })
     },
 
-    SearchRecipes: async () => {
-       set({
+    searchRecipes: async (filters) => {
+        console.log(filters)
+      /*  set({
         
-       })
+       }) */
      }
 })
