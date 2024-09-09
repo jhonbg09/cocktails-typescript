@@ -5,14 +5,17 @@ import {
   getRecipes,
 } from "../services/RecipeServices";
 import type { Categories, Drink, Drinks, Recipe, SearchFilter } from "../types";
+/* import { Select } from "@headlessui/react"; */
 
 export type RecipesSliceType = {
   categories: Categories;
   drinks: Drinks;
   selectedRecipe: Recipe;
+  modal: boolean
   fecthCategories: () => Promise<void>;
   searchRecipes: (searchFilter: SearchFilter) => Promise<void>;
   selectRecipe: (id: Drink["idDrink"]) => Promise<void>;
+  closeModal: () => void;
 };
 export const createRecipesSlice: StateCreator<RecipesSliceType> = (set) => ({
   categories: {
@@ -22,6 +25,7 @@ export const createRecipesSlice: StateCreator<RecipesSliceType> = (set) => ({
     drinks: [],
   },
   selectedRecipe: {} as Recipe,
+  modal: false, 
   fecthCategories: async () => {
     const categories = await getCategories();
     set({
@@ -39,7 +43,15 @@ export const createRecipesSlice: StateCreator<RecipesSliceType> = (set) => ({
   selectRecipe: async (id) => {
     const selectedRecipe = await getRecipeById(id);
     set({
-        selectedRecipe
+        selectedRecipe,
+        modal: true,
     })
   },
+
+  closeModal: () =>{
+    set({
+      modal: false,
+      selectedRecipe: {} as Recipe,
+    })
+  }
 });
