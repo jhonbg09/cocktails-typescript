@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CategoriesAPIResponseSechema, DrinksAPIResponse, RecipeAPIResponseSchema } from "../utils/recipes-schema";
+import { CategoriesAPIResponseSchema, DrinksAPIResponse, RecipeAPIResponseSchema } from "../utils/recipes-schema";
 import { Drink, SearchFilter } from "../types";
 
 export async function getCategories() {
@@ -11,7 +11,7 @@ export async function getCategories() {
   const { data } = await axios.get(url);
   // console.log(data);
   // De esta manera valida que la data que viene de la api venga con la estructuraa correcta y validar la informacion
-  const result = CategoriesAPIResponseSechema.safeParse(data);
+  const result = CategoriesAPIResponseSchema.safeParse(data);
 
   if (result.success) {
     return result.data;
@@ -23,7 +23,7 @@ export async function getRecipes(filters: SearchFilter) {
   const { data } = await axios.get(url);
   /* console.log(data); */
   const result = DrinksAPIResponse.safeParse(data)
-  /* onsole.log(result) */
+  console.log(result)
   if(result.success){
     return result.data;
   }
@@ -36,4 +36,4 @@ export async function getRecipeById(id: Drink["idDrink"]) {
   if(result.success){
     return result.data;
   }
-}
+} 
