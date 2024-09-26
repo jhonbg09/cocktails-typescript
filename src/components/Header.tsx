@@ -16,7 +16,7 @@ export default function Header() {
   // console.log(isHome);
 
   // Obtiene la función 'fetchCategories' del estado global de la aplicación
-  const fecthCategories = useAppStore((state) => state.fecthCategories);
+  const fecthCategories = useAppStore((state) => state.fetchCategories);
 
   // Obtiene la lista actual de 'categories' del estado global de la aplicación
   const categories = useAppStore((state) => state.categories);
