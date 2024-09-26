@@ -1,4 +1,4 @@
-import {  StateCreator } from 'zustand'
+import {  StateCreator } from 'zustand'
 import { FavoritesSliceType } from './favoritesSlice'
 
 type Notification = {
