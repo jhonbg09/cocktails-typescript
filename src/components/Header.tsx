@@ -23,6 +23,8 @@ export default function Header() {
 
   const searchRecipes = useAppStore((state) => state.searchRecipes);
 
+  const showNotification = useAppStore((state) => state.showNotification);
+
   useEffect(() => {
     fecthCategories();
   }, []);
@@ -46,6 +48,11 @@ export default function Header() {
 
     // TODO: validar
     if(Object.values(searchFilters).includes('')){
+
+      showNotification({
+        text: "Todos los campos son obligtorios",
+        error: true
+      })
       console.log('todos los caampos son obligtorios');
       return
     }

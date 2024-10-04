@@ -37,7 +37,7 @@ export const createFavoritesSlice: StateCreator<
         favorites: [...state.favorites, recipe],
       }));
       createNotificationSlice(set, get, api).showNotification({
-        text: "Se agregó a favoritos",
+        text: "Se agrego de favoritos",
         error: false,
       });
     }
